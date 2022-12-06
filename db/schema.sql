@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS kpop_db;
+CREATE DATABASE kpop_db;

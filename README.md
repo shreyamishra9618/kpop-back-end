@@ -1,5 +1,29 @@
 # Getting Started with Create React App
 
+## Notes for internal team use
+#make your .env file
+DB_NAME='kpop_db'
+DB_USER='root'
+DB_PASSWORD='password'
+
+# For sql
+mysql -ppassword
+SOURCE ./db/schema.sql
+quit
+npm run seed
+
+
+
+
+
+
+
+
+
+
+
+
+##
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
