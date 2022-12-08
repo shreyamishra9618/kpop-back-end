@@ -26,8 +26,8 @@ const seedMe = async ()=>{
             username:"Michelle",
             password:"password3" ,
             picture:"logo512.png"
-        }
-    ]
+        },
+    ];
     const blogs = [
         {
             description:"Be the very best, like no one ever was",
@@ -45,7 +45,7 @@ const seedMe = async ()=>{
             user_id:3
         },
 
-    ]
+    ];
     try{
 
         await User.bulkCreate(users,{
@@ -57,4 +57,5 @@ const seedMe = async ()=>{
     }
     process.exit(0);
 }
-seedMe()
+
+module.exports = seedMe();
