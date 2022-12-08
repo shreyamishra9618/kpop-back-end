@@ -1,60 +1,37 @@
 const User = require("./User")
 const Blog = require("./Blog")
+const Comment = require('./Comment');
+const Questions = require('./Questions');
+const Quiz = require('./Quiz');
+const UserScore = require('./UserScore');
 
 User.hasMany(Blog);
 Blog.belongsTo(User);
+User.hasMany(Quiz);
+Quiz.belongsTo(User);
+Quiz.hasMany(Questions);
+Questions.belongsTo(Quiz);
+Blog.hasMany(Comment);
+Comment.belongsTo(Blog);
+Quiz.hasMany(Comment);
+Comment.belongsTo(Quiz);
+User.hasOne(UserScore);
+UserScore.belongsTo(User);
+
+
+
 
 module.exports = {
     User,
-    Blog
+    Blog,
+    Comment,
+    Questions,
+    Quiz,
+    UserScore
 }
 
 
-// //////
-// const User = require('./User');
-// const Kid = require('./Kid');
-// const Task = require('./Task_categories');
-// const Star= require('./Star');
 
-// User.hasMany(Kid, {
-//   foreignKey: 'user_id',
-//   onDelete: 'CASCADE'
-// });
 
-// User.hasMany(Task, {
-//   foreignKey: 'user_id',
-//   onDelete: 'CASCADE'
-// });
 
-// User.hasMany(Star, {
-//   foreignKey:'user_id'
-// });
 
-// Kid.belongsTo(User, {
-//   foreignKey: 'user_id'
-// });
-
-// Kid.hasMany(Star, {
-//   foreignKey:'kid_id'
-// });
-
-// Task.belongsTo(User, {
-//   foreignKey: 'user_id'
-// });
-
-// Task.hasMany(Star, {
-//   foreignKey:'task_category_id'
-// });
-
-// Star.belongsTo(Task,{
-//   foreignKey:'task_category_id'
-// });
-
-// Star.belongsTo(Kid,{
-//   foreignKey:'kid_id'
-// });
-
-// Star.belongsTo(User, {
-//   foreignKey:'user_id'
-// });
-// module.exports = { User, Kid, Task, Star };
