@@ -5,6 +5,7 @@
 DB_NAME='kpop_db'
 DB_USER='root'
 DB_PASSWORD='password'
+JWT_SECRET='super sectret key'
 
 # For sql
 mysql -ppassword

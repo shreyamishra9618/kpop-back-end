@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {User,Blog} = require('../models');
+const {User,Questions, Quiz} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Blog.findAll().then(blogData=>{
-        res.json(blogData)
+    Quiz.findAll().then(QuestionsData=>{
+        res.json(QuestionsData)
     }).catch(err=>{
         console.log(err);
         res.json({
@@ -15,10 +15,10 @@ router.get("/",(req,res)=>{
     })
 })
 router.get("/:id",(req,res)=>{
-    Blog.findByPk(req.params.id,{
-        include:[User]
-    }).then(blogData=>{
-        res.json(blogData)
+    Quiz.findByPk(req.params.id,{
+        include:[User,Questions]
+    }).then(QuestionsData=>{
+        res.json(QuestionsData)
     }).catch(err=>{
         console.log(err);
         res.json({
@@ -32,14 +32,14 @@ router.post("/",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.create({
-          
-            description:req.body.description,
-            picture:req.body.picture,
+        Quiz.create({
+            quiz_id:req.body.quiz_id,
+            title:req.body.title,
+            like:req.body.like,
             // user_id:req.body.user_id
             user_id:userData.user_id
-        }).then(blogData=>{
-            res.json(blogData)
+        }).then(QuestionsData=>{
+            res.json(QuestionsData)
         })
     }catch (err) {
         console.log(err);
@@ -51,22 +51,22 @@ router.delete("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.findByPk(req.params.id).then(foundBlog=>{
-            if(!foundBlog){
+        Quiz.findByPk(req.params.user_id).then(foundQuestions=>{
+            if(!foundQuestions){
                 return res.status(404).json({
                     msg:"no such item exists!"
                 })
-            } else if(foundBlog.UserId!==userData.user_id){
+            } else if(foundQuestions.UserId!==userData.user_id){
                 return res.status(403).json({
-                    msg:"you dont own this Blog!"
+                    msg:"you dont own this Quiz!"
                 })
             } else {
-                Blog.destroy({
+                Quiz.destroy({
                     where:{
                         id:req.params.user_id
                     }
-                }).then(delBlog=>{
-                    res.json(delBlog)
+                }).then(delQuestions=>{
+                    res.json(delQuestions)
                 })
             }
         })
@@ -79,24 +79,24 @@ router.put("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.findByPk(req.params.id).then(foundBlog=>{
-            if(!foundBlog){
+        Quiz.findByPk(req.params.id).then(foundQuestions=>{
+            if(!foundQuestions){
                 return res.status(404).json({
                     msg:"no such item exists!"
                 })
-            } else if(foundBlog.UserId!==userData.user_id){
+            } else if(foundQuestions.UserId!==userData.user_id){
                 return res.status(403).json({
-                    msg:"you dont own this Blog!"
+                    msg:"you dont own this Quiz!"
                 })
             } else {
-                Blog.update(
+                Quiz.update(
                     req.body,
                     {
                     where:{
                         id:req.params.user_id
                     }
-                }).then(delBlog=>{
-                    res.json(delBlog)
+                }).then(delQuestions=>{
+                    res.json(delQuestions)
                 })
             }
         })

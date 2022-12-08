@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userRoutes = require("./userController")
 const blogRoutes = require("./blogController")
+const questionsRoutes = require("./questionController")
+const commentRoutes = require("./commentController")
+const quizRoutes = require("./quizController")
 const jwt =require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
@@ -12,7 +15,7 @@ router.get("/token",(req,res)=>{
         name:"shreya",
         job:"student"
     },process.env.JWT_SECRET,{
-        expiresIn:"2h"
+        expiresIn:"24h"
     })
     res.json({
         token
@@ -33,5 +36,8 @@ router.get("/readtoken",(req,res)=>{
 })
 router.use("/api/users",userRoutes)
 router.use("/api/blogs",blogRoutes)
+router.use("/api/questions",questionsRoutes)
+router.use("/api/comment",commentRoutes)
+router.use("/api/quiz",quizRoutes)
 
 module.exports = router;
