@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {User,Blog} = require('../models');
+const {User,Comment, Quiz, Blog} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Blog.findAll().then(blogData=>{
-        res.json(blogData)
+    Comment.findAll().then(CommentData=>{
+        res.json(CommentData)
     }).catch(err=>{
         console.log(err);
         res.json({
@@ -15,10 +15,10 @@ router.get("/",(req,res)=>{
     })
 })
 router.get("/:id",(req,res)=>{
-    Blog.findByPk(req.params.id,{
-        include:[User]
-    }).then(blogData=>{
-        res.json(blogData)
+    Comment.findByPk(req.params.id,{
+        include:[User,Quiz,Blog]
+    }).then(CommentData=>{
+        res.json(CommentData)
     }).catch(err=>{
         console.log(err);
         res.json({
@@ -32,14 +32,17 @@ router.post("/",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.create({
-          
-            description:req.body.description,
-            picture:req.body.picture,
+        Comment.create({
+            comment_id:req.body.Comment_id,
+            content:req.body.content,
+            quiz_id:req.body.quiz_id,
+            blog_id:req.body.blog_id,
             // user_id:req.body.user_id
+
             user_id:userData.user_id
-        }).then(blogData=>{
-            res.json(blogData)
+            
+        }).then(CommentData=>{
+            res.json(CommentData)
         })
     }catch (err) {
         console.log(err);
@@ -51,22 +54,22 @@ router.delete("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.findByPk(req.params.id).then(foundBlog=>{
-            if(!foundBlog){
+        Comment.findByPk(req.params.id).then(foundComment=>{
+            if(!foundComment){
                 return res.status(404).json({
                     msg:"no such item exists!"
                 })
-            } else if(foundBlog.UserId!==userData.user_id){
+            } else if(foundComment.UserId!==userData.id){
                 return res.status(403).json({
-                    msg:"you dont own this Blog!"
+                    msg:"you dont own this Comment!"
                 })
             } else {
-                Blog.destroy({
+                Comment.destroy({
                     where:{
-                        id:req.params.user_id
+                        id:req.params.id
                     }
-                }).then(delBlog=>{
-                    res.json(delBlog)
+                }).then(delComment=>{
+                    res.json(delComment)
                 })
             }
         })
@@ -79,24 +82,24 @@ router.put("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.findByPk(req.params.id).then(foundBlog=>{
-            if(!foundBlog){
+        Comment.findByPk(req.params.id).then(foundComment=>{
+            if(!foundComment){
                 return res.status(404).json({
                     msg:"no such item exists!"
                 })
-            } else if(foundBlog.UserId!==userData.user_id){
+            } else if(foundComment.UserId!==userData.id){
                 return res.status(403).json({
-                    msg:"you dont own this Blog!"
+                    msg:"you dont own this Comment!"
                 })
             } else {
-                Blog.update(
+                Comment.update(
                     req.body,
                     {
                     where:{
-                        id:req.params.user_id
+                        id:req.params.id
                     }
-                }).then(delBlog=>{
-                    res.json(delBlog)
+                }).then(delComment=>{
+                    res.json(delComment)
                 })
             }
         })

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {User,Blog} = require('../models');
+const {User,Questions, Quiz} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Blog.findAll().then(blogData=>{
-        res.json(blogData)
+    Questions.findAll().then(QuestionsData=>{
+        res.json(QuestionsData)
     }).catch(err=>{
         console.log(err);
         res.json({
@@ -15,10 +15,10 @@ router.get("/",(req,res)=>{
     })
 })
 router.get("/:id",(req,res)=>{
-    Blog.findByPk(req.params.id,{
-        include:[User]
-    }).then(blogData=>{
-        res.json(blogData)
+    Questions.findByPk(req.params.id,{
+        include:[User,Quiz]
+    }).then(QuestionsData=>{
+        res.json(QuestionsData)
     }).catch(err=>{
         console.log(err);
         res.json({
@@ -32,14 +32,21 @@ router.post("/",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.create({
-          
-            description:req.body.description,
+        Questions.create({
+            Questions_id:req.body.Questions_id,
             picture:req.body.picture,
-            // user_id:req.body.user_id
+            question_content:req.body.question_content,
+            option1:req.body.option1,
+            option2:req.body.option2,
+            option3:req.body.option3,
+            option4:req.body.option4,
+            correct_ans:req.body.correct_ans,
+            // user_id:req.body.user_id,
+            quiz_id:req.body.quiz_id,
             user_id:userData.user_id
-        }).then(blogData=>{
-            res.json(blogData)
+
+        }).then(QuestionsData=>{
+            res.json(QuestionsData)
         })
     }catch (err) {
         console.log(err);
@@ -51,22 +58,22 @@ router.delete("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.findByPk(req.params.id).then(foundBlog=>{
-            if(!foundBlog){
+        Questions.findByPk(req.params.Questions_id).then(foundQuestions=>{
+            if(!foundQuestions){
                 return res.status(404).json({
                     msg:"no such item exists!"
                 })
-            } else if(foundBlog.UserId!==userData.user_id){
+            } else if(foundQuestions.UserId!==userData.id){
                 return res.status(403).json({
-                    msg:"you dont own this Blog!"
+                    msg:"you dont own this Questions!"
                 })
             } else {
-                Blog.destroy({
+                Questions.destroy({
                     where:{
-                        id:req.params.user_id
+                        id:req.params.Questions_id
                     }
-                }).then(delBlog=>{
-                    res.json(delBlog)
+                }).then(delQuestions=>{
+                    res.json(delQuestions)
                 })
             }
         })
@@ -79,24 +86,24 @@ router.put("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Blog.findByPk(req.params.id).then(foundBlog=>{
-            if(!foundBlog){
+        Questions.findByPk(req.params.Questions_id).then(foundQuestions=>{
+            if(!foundQuestions){
                 return res.status(404).json({
                     msg:"no such item exists!"
                 })
-            } else if(foundBlog.UserId!==userData.user_id){
+            } else if(foundQuestions.Questions_id!==userData.Questions_id){
                 return res.status(403).json({
-                    msg:"you dont own this Blog!"
+                    msg:"you dont own this Questions!"
                 })
             } else {
-                Blog.update(
+                Questions.update(
                     req.body,
                     {
                     where:{
-                        id:req.params.user_id
+                        id:req.params.Questions_id
                     }
-                }).then(delBlog=>{
-                    res.json(delBlog)
+                }).then(delQuestions=>{
+                    res.json(delQuestions)
                 })
             }
         })
