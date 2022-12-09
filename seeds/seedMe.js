@@ -6,25 +6,25 @@ const seedMe = async ()=>{
         {
             email:"shreya@gmail.com",
             username:"Shreya",
-            password:"password",
+            password:"password23",
             picture:"logo512.png"
         },
         {
             email:"silvia@gmail.com",
             usernamme:"Silvia",
-            password:"password1",
+            password:"password13",
             picture:"logo512.png"
         },
         {
             email:"mo@gmail.com",
             username:"MO",
-            password:"password2",
+            password:"password23",
             picture:"logo512.png"
         },
         {
             email:"michelle@gmail.com",
             username:"Michelle",
-            password:"password3" ,
+            password:"password33" ,
             picture:"logo512.png"
         },
     ];
