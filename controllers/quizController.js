@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {User,Questions, Quiz} = require('../models');
+const {User,Questions, Quiz,Comment} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
@@ -16,7 +16,7 @@ router.get("/",(req,res)=>{
 })
 router.get("/:id",(req,res)=>{
     Quiz.findByPk(req.params.id,{
-        include:[User,Questions]
+        include:[User,Questions,Comment]
     }).then(QuestionsData=>{
         res.json(QuestionsData)
     }).catch(err=>{
