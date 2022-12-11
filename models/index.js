@@ -9,14 +9,42 @@ User.hasMany(Blog);
 Blog.belongsTo(User);
 User.hasMany(Quiz);
 Quiz.belongsTo(User);
-Quiz.hasMany(Questions);
-Questions.belongsTo(Quiz);
-Blog.hasMany(Comment);
-Comment.belongsTo(Blog);
-Quiz.hasMany(Comment);
-Comment.belongsTo(Quiz);
-User.hasOne(UserScore);
-UserScore.belongsTo(User);
+// User.hasMany(Quiz,{
+//     foreignKey: 'user_id',
+//     onDelete: 'CASCADE'
+//   });
+// Quiz.belongsTo(User, {
+//     foreignKey: 'user_id'
+//   });
+Quiz.hasMany(Questions,{
+    foreignKey: 'quiz_id',
+    onDelete: 'CASCADE'
+  });
+Questions.belongsTo(Quiz,{
+    foreignKey: 'quiz_id',
+  });
+Blog.hasMany(Comment,{
+    foreignKey: 'id',
+    onDelete: 'CASCADE'
+  });
+Comment.belongsTo(Blog,{
+    foreignKey: 'id',
+  });
+Quiz.hasMany(Comment,{
+    foreignKey: 'quiz_id',
+    onDelete: 'CASCADE'
+  });
+Comment.belongsTo(Quiz,{
+    foreignKey: 'quiz_id'
+  });
+User.hasOne(UserScore,{
+    foreignKey: 'user_id',
+    foreignKey: 'quiz_id',
+    onDelete: 'CASCADE'
+  });
+UserScore.belongsTo(User,{
+    foreignKey: 'user_id'
+  });
 
 
 
