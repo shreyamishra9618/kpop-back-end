@@ -5,13 +5,17 @@ class Blog extends Model {}
 
 Blog.init({
     // add properites here, ex:
+    title:{
+      type: DataTypes.STRING,
+      allowNull:true
+    },
     description: {
-         type: DataTypes.STRING,
+         type: DataTypes.TEXT,
          allowNull:false
     },
     picture: {
      type: DataTypes.STRING,
-     allowNull: false,
+     allowNull: true,
    },
    user_id: {
      type: DataTypes.INTEGER,
@@ -20,6 +24,11 @@ Blog.init({
        key: 'id',
      },
    },
+   username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
    
 },{
     sequelize,

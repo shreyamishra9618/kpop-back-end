@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const {User,Blog} = require('../models');
+const {User,Quiz,Blog,Questions,Comment} = require('../models');
 
 router.get("/",(req,res)=>{
     User.findAll().then(userData=>{
@@ -40,7 +40,7 @@ router.get("/getuserfromtoken",(req,res)=>{
 })
 router.get("/:id",(req,res)=>{
     User.findByPk(req.params.id,{
-        include:[Blog]
+        include:[Blog,Quiz]
     }).then(userData=>{
         res.json(userData)
     }).catch(err=>{
@@ -65,9 +65,10 @@ router.post("/login",(req,res)=>{
         } else {
             const token = jwt.sign({
                 id:foundUser.id,
-                email:foundUser.email
+                email:foundUser.email,
+                username:foundUser.username
             },process.env.JWT_SECRET,{
-                expiresIn:"2h"
+                expiresIn:"24h"
             })
             return res.json({
                 token,
