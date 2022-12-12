@@ -33,11 +33,11 @@ router.post("/",(req,res)=>{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
         Blog.create({
-          
-            description:req.body.description,
-            picture:req.body.picture,
-            // user_id:req.body.user_id
-            user_id:userData.user_id
+            title: req.body.title,
+            description: req.body.description,
+            picture: req.body.picture,
+            user_id:userData.user_id,
+            username: req.body.username
         }).then(blogData=>{
             res.json(blogData)
         })
