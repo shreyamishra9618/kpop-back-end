@@ -33,7 +33,7 @@ router.post("/",(req,res)=>{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
         Questions.create({
-            Questions_id:req.body.Questions_id,
+            // Questions_id:req.body.Questions_id,
             picture:req.body.picture,
             question_content:req.body.question_content,
             option1:req.body.option1,
