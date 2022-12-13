@@ -4,8 +4,8 @@ const {User,Questions, Quiz,Comment} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Quiz.findAll({include:[User,Questions,Comment]}).then(quizdata=>{
-        res.json(quizdata)
+    Quiz.findAll({include:[User,Questions,Comment]}).then(QuizData=>{
+        res.json(QuizData)
     }).catch(err=>{
         console.log(err);
         res.json({
