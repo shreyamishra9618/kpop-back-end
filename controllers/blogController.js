@@ -4,7 +4,7 @@ const {User,Blog} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Blog.findAll().then(blogData=>{
+    Blog.findAll({order:[['id', 'DESC'],]}).then(blogData=>{
         res.json(blogData)
     }).catch(err=>{
         console.log(err);
