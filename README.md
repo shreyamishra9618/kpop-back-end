@@ -1,46 +1,74 @@
-# K-pop back end
+# Getting Started with Create React App
 
 Fandom life made easier and more dynamic. Stay connected with your artists on K-pop Trivia Fever! Here you can play quizes, read blogs and create quizes or blog related to your favorite K-pop group or idol.
 
 This is the backend part consisting of sql data base for the k-pop react based web application.
+##
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
 
-## Install
-#### `npm install` 
-#### `npm i react-router-dom` 
-#### `npm start`
+In the project directory, you can run:
 
-### For sql
-#### `mysql -ppassword`
-#### `SOURCE ./db/schema.sql`
-#### `quit`
-#### `npm run seed`
+### `npm start`
 
-You need to create your locan .env file having
-#### Example:
-#### `DB_NAME='kpop_db'`
-#### `DB_USER='root'`
-#### `DB_PASSWORD='password'`
-#### `JWT_SECRET=' your sectret key'`
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
+### `npm test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Use
-Below is the data base schema:
-![Data Base Schema](./public/Screenshot%202022-12-13%20at%2011.39.24%20AM.png)
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## Deployment
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-## Mock up
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Learn More
 
-## Collaboration
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
- Mo Risk, Michelle, Shreya Mishra and Liyuan Zhao contributed equally and created the entirety of this webpage. You can find other projects by Mo Risk, Michelle, Shreya, and Liyuan at each of their github pages: [Mo Risk](https://github.com/morisky78),[Michelle](https://github.com/mfarrell23), [Shreya](https://github.com/shreyamishra9618), [Liyuan](https://github.com/LiyuanSilviaZhao).
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

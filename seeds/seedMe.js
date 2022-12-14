@@ -63,70 +63,7 @@ const seedMe = async () => {
         },
 
     ]
-
-    const quiz = [
-        {
-            quiz_id: 1,
-            title: "BTS Army",
-            like: 5,
-            user_id: 1
-        }
-
-    ]
-    const questions = [
-        {
-            Questions_id: 1,
-            picture: 'https://images.indianexpress.com/2022/06/BTS1200-1.jpeg',
-            question_content: 'Which member spent their teen years in Australia as an exchange student?',
-            option1: 'Jin',
-            option2: 'V',
-            option3: 'Suga',
-            option4: 'Hope',
-            correct_ans: 'Jin',
-            user_id: 1,
-            quiz_id: 1
-
-        },
-        {
-            Questions_id: 2,
-            picture: 'https://pyxis.nymag.com/v1/imgs/812/a5d/694b070dca8db47fc9338f3c65fbe3d0c6-7-bts.rsquare.w330.jpg',
-            question_content: 'What does BTS stand for?',
-            option1: 'Behind the Scene',
-            option2: 'Broccoli Tomato Sausage',
-            option3: 'Bangtan Sonyeondan',
-            option4: 'Burn The Stage',
-            correct_ans: 'Broccoli Tomato Sausage',
-            user_id: 1,
-            quiz_id: 1
-        },
-        {
-            Questions_id: 3,
-            picture: 'https://pyxis.nymag.com/v1/imgs/812/a5d/694b070dca8db47fc9338f3c65fbe3d0c6-7-bts.rsquare.w330.jpg',
-            question_content: 'What\'s the name of their new single?',
-            option1: 'Butter',
-            option2: 'Margarine',
-            option3: 'Flora',
-            option4: 'Lurpak',
-            correct_ans: 'Butter',
-            user_id: 1,
-            quiz_id: 1
-        },
-        {
-            Questions_id: 4,
-            picture: 'https://img.i-scmp.com/cdn-cgi/image/fit=contain,width=1098,format=auto/sites/default/files/styles/1200x800/public/d8/images/methode/2020/12/10/5bc61682-3523-11eb-8d89-a7d6b31c4b8a_image_hires_164759.jpeg?itok=HiuJ1k21&v=1607590085',
-            question_content: 'How many members does BTS have?',
-            option1: 6,
-            option2: 5,
-            option3: 7,
-            option4: 4,
-            correct_ans: 2,
-            user_id: 1,
-            quiz_id: 1
-        },
-    ];
-
-
-    try {
+    try{
 
         await User.bulkCreate(users, {
             individualHooks: true
@@ -139,4 +76,5 @@ const seedMe = async () => {
     }
     process.exit(0);
 }
-seedMe()
+
+module.exports = seedMe();
