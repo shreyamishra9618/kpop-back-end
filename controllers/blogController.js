@@ -4,7 +4,7 @@ const {User,Blog} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Blog.findAll().then(blogData=>{
+    Blog.findAll({order:[['id', 'DESC'],]}).then(blogData=>{
         res.json(blogData)
     }).catch(err=>{
         console.log(err);
@@ -36,7 +36,7 @@ router.post("/",(req,res)=>{
             title: req.body.title,
             description: req.body.description,
             picture: req.body.picture,
-            user_id:userData.user_id,
+            user_id: req.body.user_id,
             username: req.body.username
         }).then(blogData=>{
             res.json(blogData)
