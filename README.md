@@ -3,23 +3,6 @@
 Fandom life made easier and more dynamic. Stay connected with your artists on K-pop Trivia Fever! Here you can play quizes, read blogs and create quizes or blog related to your favorite K-pop group or idol.
 
 This is the backend part consisting of sql data base for the k-pop react based web application.
-
-
-
-
-## Use
-
-
-
-
-## Mock up
-
-
-## Collaboration
-Mo Risk- She was responsible for most of the CSS, and getting the quiz and blog pages up and ruinning. She made sure that users can get their questions and answers entered and saved for others to have fun. Mo made sure that users were able to connect a picture to their quiz and or blog.
-
-Michelle Beaudoin- She was responsible for the wiki page, she made sure each card had a photo, and when clicked there was wiki information on each person or group that was on the specific card. She filled the data file with all of the info used. She also created our README so others may use this project.
-
 ##
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
