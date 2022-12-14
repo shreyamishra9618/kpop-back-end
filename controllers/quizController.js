@@ -4,7 +4,7 @@ const {User,Questions, Quiz,Comment} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Quiz.findAll({include:[User,Questions,Comment]}).then(QuizData=>{
+    Quiz.findAll({include:[User,Questions,Comment],order:[['quiz_id', 'DESC'],]}).then(QuizData=>{
         res.json(QuizData)
     }).catch(err=>{
         console.log(err);
@@ -17,7 +17,7 @@ router.get("/",(req,res)=>{
 
 router.get("/:quizId",(req,res)=>{
     Quiz.findByPk(req.params.quizId,{
-        include:[User,Questions,Comment]
+        include:[User,Questions,Comment],order:[['quiz_id', 'DESC'],]
     }).then(quizdata=>{
         res.json(quizdata)
     }).catch(err=>{
