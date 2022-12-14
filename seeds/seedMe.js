@@ -11,7 +11,7 @@ const seedMe = async () => {
         },
         {
             email: "silvia@gmail.com",
-            usernamme: "Silvia",
+            username: "Silvia",
             password: "password13",
             picture: "logo512.png"
         },
