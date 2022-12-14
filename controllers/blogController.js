@@ -36,7 +36,7 @@ router.post("/",(req,res)=>{
             title: req.body.title,
             description: req.body.description,
             picture: req.body.picture,
-            user_id:userData.user_id,
+            user_id: req.body.user_id,
             username: req.body.username
         }).then(blogData=>{
             res.json(blogData)
