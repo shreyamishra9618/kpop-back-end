@@ -4,7 +4,7 @@ const {User,Questions, Quiz,Comment} = require('../models');
 const jwt = require("jsonwebtoken")
 
 router.get("/",(req,res)=>{
-    Quiz.findAll({include:[User,Questions,Comment]}).then(QuizData=>{
+    Quiz.findAll({include:[User,Questions,Comment],order:[['quiz_id', 'DESC'],]}).then(QuizData=>{
         res.json(QuizData)
     }).catch(err=>{
         console.log(err);
@@ -17,7 +17,7 @@ router.get("/",(req,res)=>{
 
 router.get("/:quizId",(req,res)=>{
     Quiz.findByPk(req.params.quizId,{
-        include:[User,Questions,Comment]
+        include:[User,Questions,Comment],order:[['quiz_id', 'DESC'],]
     }).then(quizdata=>{
         res.json(quizdata)
     }).catch(err=>{
@@ -50,7 +50,7 @@ router.delete("/:id",(req,res)=>{
     try{
         const token = req.headers.authorization.split(" ")[1];
         const userData = jwt.verify(token,process.env.JWT_SECRET)
-        Quiz.findByPk(req.params.user_id).then(foundQuestions=>{
+        Quiz.findByPk(req.params.id).then(foundQuestions=>{
             if(!foundQuestions){
                 return res.status(404).json({
                     msg:"no such item exists!"
@@ -62,7 +62,7 @@ router.delete("/:id",(req,res)=>{
             } else {
                 Quiz.destroy({
                     where:{
-                        id:req.params.user_id
+                        quiz_id:req.params.id
                     }
                 }).then(delQuestions=>{
                     res.json(delQuestions)
